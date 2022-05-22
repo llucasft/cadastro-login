@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .forms import UserCreateForm
 from django.contrib.auth.models import User
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.shortcuts import redirect
 from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt
@@ -11,6 +11,12 @@ from django.views.decorators.csrf import csrf_exempt
 def home(request):
 
     return render(request, 'accounts/index.html')
+
+
+@csrf_exempt
+def logoutaccount(request):
+    logout(request)
+    return redirect('home')
 
 
 @csrf_exempt
